@@ -45,7 +45,7 @@
   </head>
   <body>
     <main>
-      <article class="article">
+      <article class="article" data-article-slug="thinking-in-images">
         <header class="masthead">
           <figure class="figure figure--hero">
             <a href="assets/hero-thinking-in-images.png" aria-label="Open hero image at full size">
@@ -287,5 +287,18 @@
         </footer>
       </article>
     </main>
+    <script>
+      window.__ARTICLE_ANALYTICS__ = {
+        posthogToken: "REPLACE_WITH_PERSONAL_POSTHOG_PROJECT_TOKEN",
+        posthogHost: "https://us.i.posthog.com",
+        articleSlug: "thinking-in-images",
+        cohortByHost: {
+          "randyhaddad.github.io": "github_pages",
+          "localhost": "local",
+          "127.0.0.1": "local"
+        }
+      }
+    </script>
+    <script src="analytics.js" defer></script>
   </body>
 </html>

@@ -1,13 +1,15 @@
 :root {
-  color-scheme: light;
-  --ink: #141414;
-  --paper: #fbfaf7;
-  --panel: #ffffff;
-  --muted: #64645f;
-  --line: #dedbd3;
-  --accent: #44777a;
-  --accent-strong: #254f52;
-  --fig-shadow: 0 18px 55px rgba(24, 24, 20, 0.12);
+  color-scheme: dark;
+  --canvas: #0a0a0a;
+  --canvas-soft: #111214;
+  --canvas-card: #191919;
+  --ink: #ffffff;
+  --body: #dadbdf;
+  --muted: #7d8187;
+  --hairline: #212327;
+  --hairline-strong: rgba(255, 255, 255, 0.25);
+  --accent: #ff7a17;
+  --content: 760px;
 }
 
 * {
@@ -15,29 +17,17 @@
 }
 
 html {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: Charter, "Iowan Old Style", Georgia, serif;
-  text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
 }
 
 body {
   margin: 0;
   overflow-x: hidden;
-}
-
-body::before {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  content: "";
-  background:
-    linear-gradient(90deg, rgba(20, 20, 20, 0.035) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(20, 20, 20, 0.025) 1px, transparent 1px),
-    radial-gradient(circle at 20% 18%, rgba(68, 119, 122, 0.08), transparent 32rem);
-  background-size: 92px 92px, 92px 92px, auto;
-  pointer-events: none;
+  background: var(--canvas);
 }
 
 main {
@@ -48,7 +38,7 @@ main {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: clamp(28px, 5vw, 72px) clamp(18px, 4vw, 64px) 72px;
+  padding: clamp(20px, 4vw, 64px) clamp(16px, 4vw, 64px) 72px;
 }
 
 .masthead {
@@ -56,25 +46,12 @@ main {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   justify-items: center;
-  gap: clamp(18px, 3vw, 28px);
-  padding-bottom: clamp(28px, 6vw, 72px);
+  gap: clamp(18px, 4vw, 36px);
+  padding-bottom: clamp(40px, 8vw, 96px);
 }
 
 .masthead > * {
   min-width: 0;
-}
-
-.kicker {
-  width: fit-content;
-  margin: 0;
-  padding-block: 7px;
-  border-block: 1px solid var(--accent);
-  color: var(--accent-strong);
-  font-family: Avenir Next, Avenir, Helvetica, sans-serif;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0;
-  text-transform: uppercase;
 }
 
 h1,
@@ -88,22 +65,24 @@ ul {
 
 h1 {
   width: 100%;
-  max-width: 760px;
+  max-width: var(--content);
   margin-bottom: 0;
-  font-family: Avenir Next, Avenir, Helvetica, sans-serif;
-  font-size: clamp(2.4rem, 5vw, 4.6rem);
-  line-height: 0.96;
+  color: var(--ink);
+  font-size: clamp(2.8rem, 5.8vw, 5rem);
+  font-weight: 400;
+  line-height: 1;
   letter-spacing: 0;
   overflow-wrap: break-word;
 }
 
 .masthead h2 {
   width: 100%;
-  max-width: 760px;
+  max-width: var(--content);
   margin: 0;
-  font-family: Avenir Next, Avenir, Helvetica, sans-serif;
-  font-size: clamp(1.6rem, 3vw, 2.5rem);
-  line-height: 1.1;
+  color: var(--body);
+  font-size: clamp(1.45rem, 2.6vw, 2.35rem);
+  font-weight: 400;
+  line-height: 1.15;
   letter-spacing: 0;
   overflow-wrap: break-word;
 }
@@ -111,27 +90,32 @@ h1 {
 .content,
 .byline {
   width: 100%;
-  max-width: 760px;
+  max-width: var(--content);
   margin-inline: auto;
 }
 
 .content + .content {
-  margin-top: clamp(38px, 7vw, 86px);
+  margin-top: clamp(48px, 8vw, 104px);
+  padding-top: clamp(28px, 5vw, 56px);
+  border-top: 1px solid var(--hairline);
 }
 
 .content h2 {
-  margin-bottom: 0.72em;
-  font-family: Avenir Next, Avenir, Helvetica, sans-serif;
-  font-size: clamp(1.65rem, 3.5vw, 2.6rem);
+  margin-bottom: 0.85em;
+  color: var(--ink);
+  font-size: clamp(1.85rem, 3.4vw, 3rem);
+  font-weight: 400;
   line-height: 1.08;
   letter-spacing: 0;
 }
 
 p,
 li {
-  color: var(--ink);
-  font-size: clamp(1.08rem, 1.75vw, 1.28rem);
-  line-height: 1.62;
+  color: var(--body);
+  font-size: clamp(1.02rem, 1.55vw, 1.16rem);
+  font-weight: 400;
+  line-height: 1.68;
+  letter-spacing: 0;
 }
 
 p {
@@ -139,14 +123,20 @@ p {
 }
 
 em {
+  color: var(--ink);
   font-style: italic;
+}
+
+strong {
+  color: var(--ink);
+  font-weight: 500;
 }
 
 ul {
   display: grid;
-  gap: 0.55rem;
+  gap: 0.65rem;
   margin-bottom: 1.4em;
-  padding-left: 1.35rem;
+  padding-left: 1.2rem;
 }
 
 li::marker {
@@ -154,21 +144,25 @@ li::marker {
 }
 
 blockquote {
-  margin: 1.8rem 0 2rem;
-  padding: clamp(20px, 4vw, 34px);
-  border-left: 5px solid var(--accent);
-  background: rgba(255, 255, 255, 0.74);
+  margin: 1.9rem 0 2.1rem;
+  padding: clamp(20px, 4vw, 32px);
+  border: 1px solid var(--hairline);
+  border-left-color: var(--hairline-strong);
+  background: var(--canvas-card);
+  border-radius: 8px;
 }
 
 blockquote p {
   margin-bottom: 0;
-  color: #30302d;
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
-  line-height: 1.5;
+  color: var(--ink);
+  font-size: clamp(1.12rem, 1.8vw, 1.32rem);
+  line-height: 1.55;
 }
 
 .figure {
-  margin: clamp(24px, 5vw, 48px) 0;
+  width: 100%;
+  max-width: var(--content);
+  margin: clamp(28px, 5vw, 54px) auto;
 }
 
 .figure a {
@@ -181,14 +175,12 @@ blockquote p {
   display: block;
   width: 100%;
   height: auto;
-  border: 1px solid rgba(20, 20, 20, 0.08);
-  background: var(--panel);
-  box-shadow: var(--fig-shadow);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  background: #ffffff;
 }
 
 .figure--hero {
-  width: 100%;
-  max-width: 760px;
   margin: 0;
 }
 
@@ -196,18 +188,8 @@ blockquote p {
   max-width: 1981px;
 }
 
-.figure--wide {
-  width: min(100%, 980px);
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
-
 .figure--wide img {
   max-width: 1670px;
-}
-
-.figure--portrait {
-  width: min(100%, 760px);
 }
 
 .figure--portrait img {
@@ -217,27 +199,31 @@ blockquote p {
 figcaption {
   margin-top: 0.8rem;
   color: var(--muted);
-  font-family: Avenir Next, Avenir, Helvetica, sans-serif;
-  font-size: 0.92rem;
-  line-height: 1.45;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 .byline {
-  margin-top: clamp(46px, 7vw, 92px);
-  padding-top: 26px;
-  border-top: 1px solid var(--line);
+  margin-top: clamp(56px, 8vw, 108px);
+  padding-top: 28px;
+  border-top: 1px solid var(--hairline);
 }
 
 .byline p {
   margin: 0;
   color: var(--muted);
-  font-family: Avenir Next, Avenir, Helvetica, sans-serif;
-  font-size: 0.98rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.78rem;
   line-height: 1.55;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 .byline .note {
-  margin-top: 0.35rem;
+  margin-top: 0.45rem;
 }
 
 @media (max-width: 720px) {
@@ -246,18 +232,12 @@ figcaption {
   }
 
   h1 {
-    font-size: clamp(2.35rem, 12.5vw, 3.45rem);
-    line-height: 0.94;
+    font-size: clamp(2.4rem, 12vw, 3.4rem);
+    line-height: 1;
   }
 
   .masthead h2 {
-    font-size: clamp(1.35rem, 6.2vw, 1.75rem);
-    line-height: 1.1;
-  }
-
-  .figure--wide {
-    width: 100%;
-    margin-left: 0;
-    transform: none;
+    font-size: clamp(1.28rem, 6vw, 1.72rem);
+    line-height: 1.16;
   }
 }

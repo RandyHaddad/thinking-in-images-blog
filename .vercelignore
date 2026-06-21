@@ -1,0 +1,5 @@
+.netlify/
+scripts/
+package.json
+netlify.toml
+*.log

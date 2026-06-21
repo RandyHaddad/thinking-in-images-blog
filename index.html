@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Thinking in Images</title>
+    <meta
+      name="description"
+      content="A practical note on using GPT-Image-2.0 inside engineering work."
+    />
+    <meta property="og:title" content="Thinking in Images" />
+    <meta
+      property="og:description"
+      content="A practical note on using GPT-Image-2.0 inside engineering work."
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:image"
+      content="https://randyhaddad.github.io/thinking-in-images-blog/assets/hero-thinking-in-images.png"
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <article class="article">
+        <header class="masthead">
+          <figure class="figure figure--hero">
+            <a href="assets/hero-thinking-in-images.png" aria-label="Open hero image at full size">
+              <img
+                src="assets/hero-thinking-in-images.png"
+                alt="Thinking in Images diagram showing written artifacts becoming a visual whiteboard."
+                width="1981"
+                height="792"
+                fetchpriority="high"
+              />
+            </a>
+          </figure>
+          <h1>Thinking in Images</h1>
+          <h2>A practical note on using GPT-Image-2.0 inside engineering work</h2>
+        </header>
+
+        <section class="content">
+          <p>
+            I've started splitting some PR descriptions into two sections:
+            <em>one for humans</em>, <em>one for agents</em>.
+          </p>
+          <p>The agent section is text. The human section is often an image.</p>
+          <p>
+            And it doesn't stop at PRs. When an agent writes a 500-line design spec, I ask it to
+            generate an image of what we've converged to.
+          </p>
+          <p>
+            Here's an example of GPT generating an image to explain a fork I'm pushing to the
+            Codex CLI:
+          </p>
+
+          <figure class="figure figure--wide">
+            <a href="assets/codex-merge-visual.png" aria-label="Open Codex merge visual at full size">
+              <img
+                src="assets/codex-merge-visual.png"
+                alt="Codex chat screenshot with a generated diagram explaining durable state after slash merge."
+                width="1670"
+                height="826"
+                loading="eager"
+              />
+            </a>
+            <figcaption>Generated image used inside an engineering workflow explanation.</figcaption>
+          </figure>
+
+          <p>
+            Now yes, markdown is a great artifact for agents. But it's still text, and text is
+            linear. That breaks down when the important part is a set of relationships you need to
+            inspect at once. This is where text is often the wrong modality.
+          </p>
+          <p>Images are nonlinear. They turn the spec into something I can explore spatially.</p>
+        </section>
+
+        <section class="content">
+          <h2>For Humans / For Agents</h2>
+          <p>One recent PR made this concrete.</p>
+
+          <figure class="figure figure--portrait">
+            <a href="assets/for-humans-for-agents.png" aria-label="Open workflow image at full size">
+              <img
+                src="assets/for-humans-for-agents.png"
+                alt="Whiteboard-style workflow image showing how a merge command brings one Codex session state into another."
+                width="1234"
+                height="1100"
+                loading="lazy"
+              />
+            </a>
+          </figure>
+
+          <p>
+            The change was a /merge command for Codex: bring the working state from one session
+            back into the session you want to continue.
+          </p>
+          <p>
+            I asked Codex to generate a whiteboard-style image of the workflow, copied it into the
+            PR. That's it.
+          </p>
+          <p>
+            It also forces the PR to condense around what can fit in a single image, which is useful
+            because if the core idea needs more than one image to explain, it may actually be two
+            PRs.
+          </p>
+          <p>The image shows the thing people, the humans, need to judge.</p>
+        </section>
+
+        <section class="content">
+          <h2>What images can carry</h2>
+          <p>
+            There's a popular argument, made by Thariq Shihipar in The Unreasonable Effectiveness
+            of HTML, that HTML is the new Markdown for agent output, and it's partly about
+            information richness. HTML can hold tables, CSS, SVG, scripts, interactions, workflows,
+            spatial data, and images in one artifact.
+          </p>
+          <p>
+            The value I get from generated images is different. They make some relationships easier
+            to inspect.
+          </p>
+          <p>Larkin and Simon have a useful framing for this:</p>
+          <blockquote>
+            <p>
+              Diagrams and sentences can be informationally equivalent, but computationally
+              different. The same idea can be much easier to reason about when the relationships are
+              spatial instead of sequential.
+            </p>
+          </blockquote>
+          <p>For generated images, the useful properties are:</p>
+          <ul>
+            <li><strong>Information hierarchy</strong> - what the eye reads first.</li>
+            <li><strong>Coherence</strong> - whether the parts behave like one system.</li>
+            <li><strong>Signal-to-noise</strong> - how much of the canvas carries useful information.</li>
+            <li>
+              <strong>Interference</strong> - whether one element conflicts with, or confuses
+              another.
+            </li>
+          </ul>
+          <p>
+            That is why images force conciseness. A generated image has limited space, so the
+            explanation has to focus on the parts that matter. If the artifact needs every internal
+            detail to make sense, the idea is probably too muddy in the first place.
+          </p>
+          <p>
+            Wrong is often useful. A bad generated image usually reveals a missing constraint. The
+            hierarchy was vague. The density target was unclear. The prompt described the system
+            instead of the artifact.
+          </p>
+          <p>
+            In one case, I asked the agent to recap a few annotation placement categories and
+            generate a diagram in that style. The result forced the taxonomy into a visual canvas:
+            categories, rule, examples, and only enough context to make the point.
+          </p>
+        </section>
+
+        <section class="content">
+          <h2>Portability</h2>
+          <p>Portability matters more than I expected.</p>
+          <p>
+            An image can start in Codex, land in a PR, move to Slack, get pasted into Figma or Miro,
+            and end up in a slide without changing format. That makes it easy to keep the same
+            artifact across the places where the conversation already happens.
+          </p>
+          <p>
+            HTML artifacts usually live as their own surface. That is often useful. For quick
+            alignment, I like that images can stay inline.
+          </p>
+        </section>
+
+        <section class="content">
+          <h2>HTML + Image</h2>
+          <p>Generated images also help me validate whether I am aligned with the agent.</p>
+          <p>
+            I use a skills repo called Superpowers to brainstorm and design features. The agent can
+            produce a 500-line design spec with constraints, edge cases, and implementation notes.
+            That can be useful, but I do not always want to audit the whole thing as text before I
+            know whether the agent is picturing the right product.
+          </p>
+          <p>So I ask for a hybrid artifact.</p>
+
+          <figure class="figure figure--portrait">
+            <a href="assets/html-image-hybrid.png" aria-label="Open HTML plus image artifact at full size">
+              <img
+                src="assets/html-image-hybrid.png"
+                alt="Hybrid artifact showing HTML structure alongside generated visual geometry."
+                width="1478"
+                height="1140"
+                loading="lazy"
+              />
+            </a>
+            <figcaption>HTML carries structure. Images carry the visual geometry.</figcaption>
+          </figure>
+
+          <p>
+            For structure, I ask for HTML slides. For the visual geometry, I ask for image
+            generation. The HTML gives the spec a readable walkthrough. The images show the parts
+            that are hard to evaluate as prose.
+          </p>
+          <p>
+            In that workflow, the image becomes the agent's imagination. If the image is off, I know
+            the spec has not converged yet.
+          </p>
+        </section>
+
+        <section class="content">
+          <h2>From whiteboard to codebase context</h2>
+          <p>Images can also be the input.</p>
+          <p>
+            After a whiteboard session, I can take a photo, send it to Codex, and ask it to
+            regenerate the idea with context from the codebase. In one version of this workflow,
+            Codex added the names of existing components we could reuse.
+          </p>
+          <p>
+            That is hard to get from the whiteboard alone. It is also hard to get from text alone,
+            because the whiteboard already contains the shape of the idea. The useful workflow is
+            image understanding plus codebase context, then a regenerated artifact.
+          </p>
+        </section>
+
+        <section class="content">
+          <h2>What GPT Image 2 changed</h2>
+          <p>The model quality matters because the workflow is casual.</p>
+          <p>
+            If generating a useful image takes too long, it stays outside engineering work. If it
+            takes a minute or two, it becomes something you can do while writing a PR.
+          </p>
+          <p>A few things in GPT Image 2's docs map directly onto that loop:</p>
+          <ul>
+            <li>
+              The low quality setting is built for fast drafts and quick iterations; you only move
+              to high for final assets. A cheap, throwaway image is a first-class mode, not a hack.
+            </li>
+            <li>
+              Image inputs are processed at high fidelity automatically. A whiteboard photo or an
+              existing screenshot carries its detail into the regeneration instead of being loosely
+              "inspired by" it.
+            </li>
+            <li>
+              Editing is multi-turn. You refine an image across prompts instead of re-describing
+              the whole thing from scratch each time.
+            </li>
+          </ul>
+        </section>
+
+        <section class="content">
+          <h2>Limitations</h2>
+          <p>
+            Code, schemas, tests, and implementation notes remain the source of truth. Agents
+            usually prefer structured context they can parse directly.
+          </p>
+          <p>
+            Images also have a limited canvas. Large ideas need multiple panels, like slides. Text
+            inside images still needs review. Interaction-heavy ideas usually belong in HTML.
+          </p>
+          <p>
+            There is a tooling limitation too. The screenshots in this post come from a Codex
+            workflow where images can be returned directly. In a Claude Code workflow, you would
+            generate the image to a file and reference it rather than getting it back inline - the
+            same result, with one extra step.
+          </p>
+        </section>
+
+        <footer class="byline">
+          <p>Written by Randy Haddad.</p>
+          <p class="note">Images are linked to their full-resolution originals.</p>
+        </footer>
+      </article>
+    </main>
+  </body>
+</html>

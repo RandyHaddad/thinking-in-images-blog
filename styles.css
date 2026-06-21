@@ -1,15 +1,62 @@
+@font-face {
+  font-family: TwitterChirp;
+  src:
+    url("https://abs.twimg.com/responsive-web/client-web/Chirp-Regular.80fda27a.woff2")
+      format("woff2"),
+    url("https://abs.twimg.com/responsive-web/client-web/Chirp-Regular.60b215ba.woff")
+      format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: TwitterChirp;
+  src:
+    url("https://abs.twimg.com/responsive-web/client-web/Chirp-Medium.f8e2739a.woff2")
+      format("woff2"),
+    url("https://abs.twimg.com/responsive-web/client-web/Chirp-Medium.20fc288a.woff")
+      format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: TwitterChirp;
+  src:
+    url("https://abs.twimg.com/responsive-web/client-web/Chirp-Bold.ebb56aba.woff2")
+      format("woff2"),
+    url("https://abs.twimg.com/responsive-web/client-web/Chirp-Bold.a573679a.woff")
+      format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: TwitterChirp;
+  src:
+    url("https://abs.twimg.com/responsive-web/client-web/Chirp-Heavy.f44ae4ea.woff2")
+      format("woff2"),
+    url("https://abs.twimg.com/responsive-web/client-web/Chirp-Heavy.d70ec7ca.woff")
+      format("woff");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   color-scheme: dark;
-  --canvas: #0a0a0a;
-  --canvas-soft: #111214;
-  --canvas-card: #191919;
-  --ink: #ffffff;
-  --body: #dadbdf;
-  --muted: #7d8187;
-  --hairline: #212327;
-  --hairline-strong: rgba(255, 255, 255, 0.25);
-  --accent: #ff7a17;
-  --content: 760px;
+  --canvas: #000000;
+  --surface: #0f1419;
+  --ink: #e7e9ea;
+  --body: #e7e9ea;
+  --muted: #71767b;
+  --line: #2f3336;
+  --content: 600px;
+  --font-x: "TwitterChirp", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
 }
 
 * {
@@ -20,7 +67,8 @@ html {
   overflow-x: hidden;
   background: var(--canvas);
   color: var(--ink);
-  font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-x);
+  font-size: 15px;
   text-rendering: optimizeLegibility;
 }
 
@@ -36,9 +84,9 @@ main {
 
 .article {
   width: 100%;
-  max-width: 1280px;
+  max-width: 760px;
   margin: 0 auto;
-  padding: clamp(20px, 4vw, 64px) clamp(16px, 4vw, 64px) 72px;
+  padding: clamp(20px, 5vw, 48px) clamp(16px, 5vw, 48px) 72px;
 }
 
 .masthead {
@@ -46,8 +94,8 @@ main {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   justify-items: center;
-  gap: clamp(18px, 4vw, 36px);
-  padding-bottom: clamp(40px, 8vw, 96px);
+  gap: 28px;
+  padding-bottom: 28px;
 }
 
 .masthead > * {
@@ -68,9 +116,9 @@ h1 {
   max-width: var(--content);
   margin-bottom: 0;
   color: var(--ink);
-  font-size: clamp(2.8rem, 5.8vw, 5rem);
-  font-weight: 400;
-  line-height: 1;
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 44px;
   letter-spacing: 0;
   overflow-wrap: break-word;
 }
@@ -79,10 +127,10 @@ h1 {
   width: 100%;
   max-width: var(--content);
   margin: 0;
-  color: var(--body);
-  font-size: clamp(1.45rem, 2.6vw, 2.35rem);
-  font-weight: 400;
-  line-height: 1.15;
+  color: var(--ink);
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 36px;
   letter-spacing: 0;
   overflow-wrap: break-word;
 }
@@ -95,74 +143,91 @@ h1 {
 }
 
 .content + .content {
-  margin-top: clamp(48px, 8vw, 104px);
-  padding-top: clamp(28px, 5vw, 56px);
-  border-top: 1px solid var(--hairline);
+  margin-top: 28px;
+  padding-top: 0;
 }
 
 .content h2 {
-  margin-bottom: 0.85em;
+  margin-bottom: 28px;
   color: var(--ink);
-  font-size: clamp(1.85rem, 3.4vw, 3rem);
-  font-weight: 400;
-  line-height: 1.08;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 36px;
   letter-spacing: 0;
 }
 
 p,
 li {
   color: var(--body);
-  font-size: clamp(1.02rem, 1.55vw, 1.16rem);
+  font-size: 17px;
   font-weight: 400;
-  line-height: 1.68;
+  line-height: 28px;
   letter-spacing: 0;
 }
 
 p {
-  margin-bottom: 1.05em;
+  margin-bottom: 28px;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
-em {
+em,
+strong {
   color: var(--ink);
-  font-style: italic;
 }
 
 strong {
-  color: var(--ink);
-  font-weight: 500;
+  font-weight: 700;
 }
 
 ul {
   display: grid;
-  gap: 0.65rem;
-  margin-bottom: 1.4em;
-  padding-left: 1.2rem;
+  gap: 12px;
+  margin-bottom: 28px;
+  padding-left: 30px;
+}
+
+li {
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 li::marker {
-  color: var(--accent);
+  color: var(--muted);
 }
 
 blockquote {
-  margin: 1.9rem 0 2.1rem;
-  padding: clamp(20px, 4vw, 32px);
-  border: 1px solid var(--hairline);
-  border-left-color: var(--hairline-strong);
-  background: var(--canvas-card);
-  border-radius: 8px;
+  position: relative;
+  margin: -2px 0 26px;
+  padding: 0 0 0 27px;
+  border: 0;
+  background: transparent;
+}
+
+blockquote::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  border-radius: 9999px;
+  content: "";
+  background: #b6b9bc;
 }
 
 blockquote p {
   margin-bottom: 0;
   color: var(--ink);
-  font-size: clamp(1.12rem, 1.8vw, 1.32rem);
-  line-height: 1.55;
+  font-size: 17px;
+  line-height: 28px;
 }
 
 .figure {
   width: 100%;
   max-width: var(--content);
-  margin: clamp(28px, 5vw, 54px) auto;
+  margin: 28px auto;
 }
 
 .figure a {
@@ -175,8 +240,8 @@ blockquote p {
   display: block;
   width: 100%;
   height: auto;
-  border: 1px solid var(--hairline);
-  border-radius: 8px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
   background: #ffffff;
 }
 
@@ -197,33 +262,30 @@ blockquote p {
 }
 
 figcaption {
-  margin-top: 0.8rem;
+  margin-top: 8px;
   color: var(--muted);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.78rem;
-  line-height: 1.5;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.45;
   letter-spacing: 0;
-  text-transform: uppercase;
 }
 
 .byline {
-  margin-top: clamp(56px, 8vw, 108px);
-  padding-top: 28px;
-  border-top: 1px solid var(--hairline);
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
 }
 
 .byline p {
   margin: 0;
   color: var(--muted);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.78rem;
+  font-size: 0.95rem;
   line-height: 1.55;
-  letter-spacing: 0;
-  text-transform: uppercase;
+  text-align: left;
 }
 
 .byline .note {
-  margin-top: 0.45rem;
+  margin-top: 0.35rem;
 }
 
 @media (max-width: 720px) {
@@ -232,12 +294,18 @@ figcaption {
   }
 
   h1 {
-    font-size: clamp(2.4rem, 12vw, 3.4rem);
-    line-height: 1;
+    font-size: 34px;
+    line-height: 44px;
   }
 
   .masthead h2 {
-    font-size: clamp(1.28rem, 6vw, 1.72rem);
-    line-height: 1.16;
+    font-size: 21px;
+    line-height: 28px;
+  }
+
+  p,
+  li {
+    font-size: 17px;
+    line-height: 28px;
   }
 }
